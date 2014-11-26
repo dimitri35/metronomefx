@@ -1,4 +1,6 @@
-package tp.metronome.model;
+package fr.istic.java.main.model;
+
+import fr.istic.java.main.materiel.Horloge;
 
 public class BipEvenementStop implements Commande{
 

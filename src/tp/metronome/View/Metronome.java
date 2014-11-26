@@ -1,4 +1,4 @@
-package tp.metronome;
+package View;
 
 import java.io.IOException;
 

@@ -1,7 +1,9 @@
-package tp.metronome.model;
+package fr.istic.java.main.materiel;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import fr.istic.java.main.model.Commande;
 
 public interface Horloge {
 

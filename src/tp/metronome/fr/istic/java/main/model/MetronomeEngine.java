@@ -1,4 +1,8 @@
-package tp.metronome.model;
+package fr.istic.java.main.model;
+
+import fr.istic.java.main.materiel.Horloge;
+import fr.istic.java.main.materiel.HorlogeImp;
+import fr.istic.java.main.materiel.Son;
 
 public class MetronomeEngine implements IMetronomeEngine{
 	

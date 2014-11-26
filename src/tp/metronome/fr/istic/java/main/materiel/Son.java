@@ -1,4 +1,4 @@
-package tp.metronome.model;
+package fr.istic.java.main.materiel;
 
 import java.applet.*;
 import java.io.File;

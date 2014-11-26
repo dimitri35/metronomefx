@@ -1,9 +1,9 @@
-package tp.metronome.View;
+package View;
 
 
-import tp.metronome.Metronome;
-import tp.metronome.model.IMetronomeEngine;
-import tp.metronome.model.MetronomeEngine;
+import fr.istic.java.main.model.IMetronomeEngine;
+import fr.istic.java.main.model.MetronomeEngine;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
