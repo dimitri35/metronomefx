@@ -43,7 +43,7 @@ public class MetronomeEngine implements IMetronomeEngine{
 			setOn(true);
 			horloge = new HorlogeImp();
 			bipCommande = new BipEvenement(bip);
-			horloge.activerPériodiquement(bipCommande, tempoBPM);
+			//horloge.activerPériodiquement(bipCommande, tempoBPM);
 		}
 		
 	}
@@ -52,7 +52,7 @@ public class MetronomeEngine implements IMetronomeEngine{
 		if (isOn()){
 			setOn(false);
 			bipCommandeDesactive = new BipEvenementStop(horloge);
-			horloge.désactiver(bipCommandeDesactive);
+			//horloge.désactiver(bipCommandeDesactive);
 			System.err.println("STOP");
 			System.err.println(isOn());
 		}

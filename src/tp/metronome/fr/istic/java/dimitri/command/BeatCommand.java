@@ -10,7 +10,7 @@ import fr.istic.java.dimitri.controller.Controller;
  * @generated
  */
 
-public class BeatCommand implements ICommand
+public class BeatCommand implements IBeatCommand
 {
 	public Controller controller ;
 
@@ -25,11 +25,11 @@ public class BeatCommand implements ICommand
 
 	public BeatCommand(Controller ctrler)
 	{
-		
+		this.controller = ctrler ;
 	}
+	
 	public void execute() {
-		controller.handleBeatEvent();
-		
+		controller.handleBeatEvent();	
 	}
 
 	public Controller getController() {

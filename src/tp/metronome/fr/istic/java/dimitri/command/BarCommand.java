@@ -8,7 +8,7 @@ import fr.istic.java.dimitri.controller.Controller;
  * @generated
  */
 
-public class BarCommand implements ICommand 
+public class BarCommand implements IBeatCommand 
 {
 	private Controller controller ;
 	

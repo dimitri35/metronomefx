@@ -28,18 +28,18 @@
 			</font>
 		</Button>
 		<Button layoutX="324.0" layoutY="293.0" mnemonicParsing="false"
-			prefHeight="50.0" prefWidth="71.0" text="inc" textAlignment="CENTER">
+			prefHeight="50.0" prefWidth="71.0" text="inc" onAction="#inc" textAlignment="CENTER">
 			<font>
 				<Font name="gargi" size="15.0" />
 			</font>
 		</Button>
 		<Button layoutX="478.0" layoutY="293.0" mnemonicParsing="false"
-			prefHeight="50.0" prefWidth="71.0" text="dec">
+			prefHeight="50.0" prefWidth="71.0" text="dec" onAction="#dec">
 			<font>
 				<Font name="gargi" size="15.0" />
 			</font>
 		</Button>
-		<Slider layoutX="84.0" layoutY="82.0" orientation="VERTICAL" />
+		<Slider layoutX="84.0" layoutY="82.0" orientation="VERTICAL" fx:id="slider" />
 
 		<Text fx:id="tempoBPM" fontSmoothingType="LCD" layoutX="176.0"
 			layoutY="198.0" text="1000" textAlignment="CENTER" wrappingWidth="218.43017578125">
@@ -48,9 +48,9 @@
 			</font>
 		</Text>
 
-		<Circle fill="DODGERBLUE" layoutX="513.0" layoutY="153.0"
+		<Circle fill="DODGERBLUE" layoutX="513.0" layoutY="153.0" fx:id="beatCircle"
 			radius="19.0" stroke="BLACK" strokeType="INSIDE" />
-		<Circle fill="DODGERBLUE" layoutX="513.0" layoutY="225.0"
+		<Circle fill="DODGERBLUE" layoutX="513.0" layoutY="225.0" fx:id="barCircle"
 			radius="19.0" stroke="BLACK" strokeType="INSIDE" />
 		<Label alignment="CENTER" layoutX="130.0" layoutY="50.0"
 			prefHeight="70.0" prefWidth="309.0" text="Métronome">

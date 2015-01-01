@@ -19,12 +19,16 @@ public  interface IMetronomeEngine
 	
 	public void setBeatEventHandler(ICommand commande) ;
 	public void setBarEventHandler(ICommand commande) ;
-	public void setBpmChangedHandler(ICommand commande) ;
-	public ICommand getCommandObserver() ;
+	public void setBpmChangedCmd(ICommand commande ) ;
+	public void setBeatsPerBarCmd(ICommand commande) ;
 	
 	public void start(int beat,int bar) ;
+	public void stop() ;
+	
 	public void setBeatsPerBar(int beatsPerBar) ;
 	
-	public void executeChange(Observer obs) ;
+	public void inc() ;
+	public void dec() ;
+	
 }
 

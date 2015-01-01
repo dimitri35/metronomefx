@@ -1,14 +1,20 @@
 package fr.istic.java.dimitri.controller;
 
 import java.util.Observable;
+import java.util.Observer;
 
 import javafx.beans.binding.SetBinding;
+import javafx.scene.paint.Color;
 
 import org.xml.sax.HandlerBase;
 
+import sun.swing.plaf.synth.Paint9Painter;
+import tp.metronome.View.IHM;
 import fr.istic.java.dimitri.command.BarCommand;
 import fr.istic.java.dimitri.command.BeatCommand;
 import fr.istic.java.dimitri.command.BpmChangedHandler;
+import fr.istic.java.dimitri.command.CommandSlider;
+import fr.istic.java.dimitri.command.ICommand;
 import fr.istic.java.dimitri.model.IMetronomeEngine;
 import fr.istic.java.dimitri.model.MetronomeEngine;
 import fr.istic.java.main.materiel.Afficheur;
@@ -20,7 +26,7 @@ import fr.istic.java.main.materiel.Materiel;
  * @generated
  */
 
-public class Controller implements IControl
+public class Controller  implements IControl, Observer
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -32,6 +38,8 @@ public class Controller implements IControl
 	private int beatsPerBar ;
 	
 	private IMetronomeEngine engine ;
+	
+
 	
 	public Afficheur iLED;
 	
@@ -53,21 +61,32 @@ public class Controller implements IControl
 		engine.setBarEventHandler(barCommand);
 		
 		BpmChangedHandler bpmHandler = new BpmChangedHandler() ;
-		engine.setBpmChangedHandler(bpmHandler);
+		engine.setBpmChangedCmd(new BpmChangedHandler());
 		Observable engineObservable = (Observable) engine ;
 		engineObservable.addObserver(this);
 		//engineObservable.addObserver(o);
-		
+		IHM.setChangedSlider(new CommandSlider(this)) ;
 		engine.start(60,4) ;
 	}
 	
+	public void stop(){
+		engine.stop() ;
+	}
+	
+	public void dec(){
+		engine.dec();
+	}
+	
+	public void inc(){
+		engine.inc();
+	}
 	
 	public void handleBeatEvent()
 	{
 		bpm = engine.getBPM() ;
 		System.out.println("battement");
-		Materiel.getAfficheur().allumerLED(1);
 		Materiel.getEmetteurSonore().emettreClic();
+		IHM.barCircle.fillProperty().set(Color.GREEN);
 	}
 	
 	public void handleBarEvent()
@@ -75,16 +94,21 @@ public class Controller implements IControl
 		beatsPerBar = engine.getBeatsPerBar() ;
 		System.out.println("mesure");
 		Materiel.getAfficheur().allumerLED(2);
+		IHM.barCircle.fillProperty().set(Color.RED);
 	}
 
 	public void handleBpmChanged() 
 	{
-		Materiel.getAfficheur().afficherTempo(engine.getBPM());
+		//Materiel.getAfficheur().afficherTempo(engine.getBPM());
+		System.out.println("handleBpmChnaged"+engine.getBPM()+"") ;
+		IHM.display.setText(engine.getBPM()+"");
+		
 	}
 	
 	public void handleSliderChanged()
-	{
-		engine.setBPM(bpm);
+	{	
+		System.out.println(220*IHM.slider.getValue()/100);
+		engine.setBPM((int) (20+(220*IHM.slider.getValue()/100) ) );
 	}
 	
 	/**
@@ -93,14 +117,23 @@ public class Controller implements IControl
 	 */
 	public void setBpm(int nombre)
 	{
-		bpm = 150 ;
+		bpm = nombre ;
+		//IHM.displayImpl.setText(nombre+"");
 	}
 	
 	public void update(Observable arg0, Object arg1) {
+		
 		if(arg0 instanceof MetronomeEngine)
 		{
-			IMetronomeEngine metronome =(IMetronomeEngine) arg0 ;
-			metronome.executeChange(this);
+			
+			if(arg1 instanceof BpmChangedHandler)
+			{
+				
+				((BpmChangedHandler) arg1).setController(this);
+				((BpmChangedHandler) arg1).execute(); 
+			}
+			
+		
 		}
 	}
 	

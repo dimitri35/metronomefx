@@ -1,8 +1,10 @@
 package fr.istic.java.main.materiel;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import fr.istic.java.dimitri.command.ICommand;
 import fr.istic.java.main.model.Commande;
 
 public class HorlogeImp implements Horloge{
@@ -10,13 +12,14 @@ public class HorlogeImp implements Horloge{
 	
 	Timer timer = new Timer();
 	TimerTask task;
-	public void activerPériodiquement(final Commande cmd, long périodeEnSecondes){
+
+	public void activerPériodiquement(final ICommand cmd, long périodeEnSecondes){
 		task = new TimerTask()
 		{
 			@Override
 			public void run() 
 			{
-				cmd.Execute();
+				cmd.execute();
 			}	
 		};
 		
@@ -36,8 +39,9 @@ public class HorlogeImp implements Horloge{
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(task, délaiEnSecondes, périodeEnSecondes);
 	}*/
-	public void désactiver(Commande cmd){
-		cmd.Execute();
+	public void désactiver(ICommand cmd){
+		//timer.cancel() ;
+		//timer.purge() ;
 	}
 	
 	public Timer getTimer(){

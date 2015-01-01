@@ -1,5 +1,7 @@
 package fr.istic.java.main.materiel;
 
+import javafx.fxml.FXML;
+
 
 /*
 import model.Controller;
@@ -15,6 +17,7 @@ import model.JavaFX;
 public class AfficheurImpl implements Afficheur 
 {
 	public String affichage ;
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
@@ -32,7 +35,6 @@ public class AfficheurImpl implements Afficheur
 	 */
 	
 	//public Controller controller;
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
@@ -55,6 +57,7 @@ public class AfficheurImpl implements Afficheur
 	public void afficherTempo(int valeurTempo) {
 		System.out.println() ;
 		affichage = valeurTempo+"" ;
+		
 	}
 
 	@Override
