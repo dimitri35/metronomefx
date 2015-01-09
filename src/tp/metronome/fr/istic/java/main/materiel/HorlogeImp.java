@@ -1,28 +1,46 @@
 package fr.istic.java.main.materiel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javafx.application.Platform;
 import fr.istic.java.dimitri.command.ICommand;
 import fr.istic.java.main.model.Commande;
+/**
+ * 
+ * @author dounia dimitri
+ *
+ */
 
 public class HorlogeImp implements Horloge{
 	
 	
 	Timer timer = new Timer();
 	TimerTask task;
+	private HashMap<ICommand,TimerTask> tasks ;
+	
+	public HorlogeImp() {
+		tasks = new HashMap<ICommand, TimerTask>() ;
+	}
 
 	public void activerPériodiquement(final ICommand cmd, long périodeEnSecondes){
+		if(tasks.containsKey(cmd))
+		{
+			désactiver(cmd);
+		}
 		task = new TimerTask()
 		{
 			@Override
 			public void run() 
 			{
-				cmd.execute();
+				Platform.runLater(() -> {
+					cmd.execute();
+				}) ;
 			}	
 		};
-		
+		tasks.put(cmd, task) ;
 		timer.schedule(task, 0, périodeEnSecondes);
 		//timer.scheduleAtFixedRate(task, 0, périodeEnSecondes);
 	}
@@ -40,6 +58,8 @@ public class HorlogeImp implements Horloge{
 		timer.scheduleAtFixedRate(task, délaiEnSecondes, périodeEnSecondes);
 	}*/
 	public void désactiver(ICommand cmd){
+		TimerTask task = tasks.get(cmd) ;
+		task.cancel() ;
 		//timer.cancel() ;
 		//timer.purge() ;
 	}

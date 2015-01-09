@@ -7,8 +7,12 @@ import fr.istic.java.dimitri.model.IMetronomeEngine;
 
 public class BeatFactoryCommand implements ICommand {
 
-	private Controller controleur ;
 	private IMetronomeEngine engine ;
+	
+	/*(non-javadoc)
+	 *  
+	 * @see fr.istic.java.dimitri.command.ICommand#execute()
+	 */
 	@Override
 	public void execute() {
 		FactoryBeatCommand.getBeatCommand(engine).execute();

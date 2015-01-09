@@ -1,36 +1,39 @@
 package fr.istic.java.dimitri.command;
 
-import fr.istic.java.dimitri.controller.Controller;
+
+import fr.istic.java.dimitri.controller.*;
 
 /**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
+ * @author dimitri
+ *
  * @generated
  */
 
 public class BarCommand implements IBeatCommand 
 {
-	private Controller controller ;
+	private HandlerBeat controller ;
 	
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
+	 * 
+	 * 
 	 * @generated
 	 */
 	public BarCommand(){
 		super();
 	}
-
+	
+	/* (non-javadoc)
+	 * 
+	 * @see fr.istic.java.dimitri.command.ICommand#execute()
+	 */
 	public void execute() {
-		controller.handleBarEvent(); 		
+		controller.handleBarEvent();
+		controller.handleBeatEvent(); 	
 	}
 
-	public Controller getController() {
-		return controller;
-	}
 
-	public void setController(Controller controller) {
+	public void setController(HandlerBeat controller) {
 		this.controller = controller;
 	}
 }

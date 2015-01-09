@@ -9,6 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import fr.istic.java.dimitri.controller.Controller;
+import fr.istic.java.dimitri.model.MetronomeEngine;
 import fr.istic.java.main.materiel.Materiel;
 
 public class ControllerTest {
@@ -29,13 +30,15 @@ public class ControllerTest {
 	public void tearDown() throws Exception {
 	}
 
+	/*
 	@Test
-	public void controllerObs0() {
+	public void start0() {
 		int nombre = 150 ;
-		Controller controller = new Controller();
-		controller.setBpm(nombre);
-		controller.handleSliderChanged();
-		assertEquals(Materiel.getAfficheur().getTexte(),nombre) ;
+		MetronomeEngine metronome = new MetronomeEngine() ;
+		Controller controller = new Controller(metronome);
+		controller.start() ;
+		assertEquals(metronome.getBeatsPerBar(),nombre) ;
 	}
+	*/
 
 }

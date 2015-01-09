@@ -1,6 +1,7 @@
 package fr.istic.java.dimitri.command;
 
 import fr.istic.java.dimitri.controller.Controller;
+import fr.istic.java.dimitri.controller.IController;
 
 
 
@@ -12,7 +13,7 @@ import fr.istic.java.dimitri.controller.Controller;
 
 public class BeatCommand implements IBeatCommand
 {
-	public Controller controller ;
+	public HandlerBeat controller ;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -23,20 +24,20 @@ public class BeatCommand implements IBeatCommand
 		super();
 	}
 
-	public BeatCommand(Controller ctrler)
+	public BeatCommand(HandlerBeat ctrler)
 	{
 		this.controller = ctrler ;
 	}
 	
+	/* (non-javadoc)
+	 * 
+	 * @see fr.istic.java.dimitri.command.ICommand#execute()
+	 */
 	public void execute() {
 		controller.handleBeatEvent();	
 	}
 
-	public Controller getController() {
-		return controller;
-	}
-
-	public void setController(Controller controller) {
+	public void setController(HandlerBeat controller) {
 		this.controller = controller;
 	}
 }

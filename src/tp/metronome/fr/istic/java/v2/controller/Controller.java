@@ -1,4 +1,4 @@
-package fr.istic.java.dimitri.controller;
+package fr.istic.java.v2.controller;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -10,9 +10,8 @@ import javafx.scene.paint.Paint;
 import org.xml.sax.HandlerBase;
 
 import tp.metronome.View.IHM;
-import tp.metronome.View.Metronome;
-import tp.metronome.View.VueMetronome;
-import fr.istic.java.dimitri.adapteur.AdapteurMateriel;
+import fr.istic.java.dimitri.adapteur.VueMetronome;
+import fr.istic.java.dimitri.adapteur.VueMetronome;
 import fr.istic.java.dimitri.command.BarCommand;
 import fr.istic.java.dimitri.command.BeatCommand;
 import fr.istic.java.dimitri.command.BpmChangedHandler;
@@ -21,6 +20,7 @@ import fr.istic.java.dimitri.command.HandlerBeat;
 import fr.istic.java.dimitri.command.ICommand;
 import fr.istic.java.dimitri.command.button.ClickCommand;
 import fr.istic.java.dimitri.command.button.HandlerButton;
+import fr.istic.java.dimitri.controller.IController;
 import fr.istic.java.dimitri.model.IMetronomeEngine;
 import fr.istic.java.dimitri.model.MetronomeEngine;
 import fr.istic.java.main.materiel.Afficheur;
@@ -28,7 +28,6 @@ import fr.istic.java.main.materiel.Materiel;
 
 /**
  * @author dimitri
- * 
  * 
  */
 public class Controller  implements IController, Observer
@@ -38,8 +37,6 @@ public class Controller  implements IController, Observer
 	private int beatsPerBar ;	
 	private IMetronomeEngine engine ;
 	public Afficheur iLED;
-	
-	private VueMetronome vue = new AdapteurMateriel() ;
 	
 	/**
 	 * 
@@ -63,18 +60,19 @@ public class Controller  implements IController, Observer
 		Observable engineObservable = (Observable) engine ;
 		engineObservable.addObserver(this);
 		//engineObservable.addObserver(o);
-		//IHM.getiSlider().setChangedSlider(new CommandSlider(this)) ;
-		
-		vue.getiSlider().setChangedSlider(new CommandSlider(this)
-		);
-		
-		
+		//IHM.setChangedSlider(new CommandSlider(this)) ;
+		VueMetronome.getiSlider().setChangedSlider(new ICommand() {
+			@Override
+			public void execute() {
+				handleSliderChanged();
+			}
+		});
 		ClickCommand  commandeClick = new ClickCommand() ;
-		commandeClick.setSource(vue.getBouton());
+		commandeClick.setSource(VueMetronome.getBouton());
 		commandeClick.setController(this);
-		vue.getBouton().setCommande(commandeClick) ;
+		VueMetronome.getBouton().setCommande(commandeClick) ;
 		
-		//engine.start(60,4) ;
+		engine.start(60,4) ;
 	}
 	
 	/*
@@ -83,7 +81,6 @@ public class Controller  implements IController, Observer
 	 */
 	@Override
 	public void start() {
-		System.out.println("start") ;
 		engine.start(60,4) ;
 	}
 	
@@ -92,7 +89,6 @@ public class Controller  implements IController, Observer
 	 * @see fr.istic.java.dimitri.controller.IController#stop()
 	 */
 	public void stop(){
-		System.out.println("stop") ;
 		engine.stop() ;
 	}
 	
@@ -121,9 +117,9 @@ public class Controller  implements IController, Observer
 		bpm = engine.getBPM() ;
 		System.out.println("battement");
 		Materiel.getEmetteurSonore().emettreClic();
-		//IHM.getiDisplay().flashBeat();
+		//IHM.flashBeat();
 		//Materiel.getAfficheur().allumerLED(1);
-		vue.getiDisplay().flashBeat();
+		VueMetronome.getiDisplay().flashBeat();
 		//IHM.barCircle.setFill(Color.ANTIQUEWHITE);
 		//IHM.barCircle.fillProperty().set(Color.GREEN);
 	}
@@ -135,12 +131,12 @@ public class Controller  implements IController, Observer
 	{
 		beatsPerBar = engine.getBeatsPerBar() ;
 		System.out.println("mesure");
-		Materiel.getEmetteurSonore().emettreClicBar();
-		//IHM.getiDisplay().flashBar();
+		Materiel.getEmetteurSonore().emettreClic();
+		//IHM.flashBar();
 		//Materiel.getAfficheur().allumerLED(2);
 		//Materiel.getAfficheur().allumerLED(2);
 		//IHM.barCircle.setFill(Color.ALICEBLUE);
-		vue.getiDisplay().flashBar();
+		VueMetronome.getiDisplay().flashBar();
 	}
 
 	/*
@@ -153,7 +149,7 @@ public class Controller  implements IController, Observer
 		//System.out.println("handleBpmChnaged"+engine.getBPM()+"") ;
 		//IHM.display.setText(engine.getBPM()+"");
 		//Materiel.getAfficheur().afficherTempo(engine.getBPM());
-		vue.getiDisplay().setText(engine.getBPM()+"");
+		VueMetronome.getiDisplay().setText(engine.getBPM()+"");
 		
 	}
 	
@@ -163,8 +159,8 @@ public class Controller  implements IController, Observer
 	 */
 	public void handleSliderChanged()
 	{	
-		System.out.println(220*vue.getiSlider().getValue()/100);
-		engine.setBPM((int) (20+(220*vue.getiSlider().getValue()/100) ) );
+		System.out.println(220*IHM.getiSlider().getValue()/100);
+		engine.setBPM((int) (20+(220*IHM.getiSlider().getValue()/100) ) );
 	}
 	
 	/**

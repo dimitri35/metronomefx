@@ -20,7 +20,7 @@ public class Son {
 	
 	private int k = 0;
 	
-	private int tempsParMesure;
+	//private int tempsParMesure;
 
     public Son(String fichierAudio1, String fichierAudio2, int tempsParMesure) {
     	
@@ -31,13 +31,13 @@ public class Son {
     	u2 = Son.class.getResource(fichierAudio2);
     	clip2 = Applet.newAudioClip(u2);
     	
-    	this.tempsParMesure = tempsParMesure;
+    	//this.tempsParMesure = tempsParMesure;
    	 }
  
-	public void jouer()
+	public void jouerBeat()
 	{   
-		k = ( k+1 )% 4 ;
-		if (k == 1){
+		//k = ( k+1 )% 4 ;
+		//if (k == 1){
 			
 		//	System.err.println(this.tempsParMesure);
 		try { System.err.println("bip1");
@@ -46,16 +46,21 @@ public class Son {
 			//clip1.setFramePosition(0);
 			} 
 		catch (Exception e) {System.err.println("catch1");}
-		}else
-			{try { 
-				System.err.println("bip2");
-				clip2.play();
-				//clip2.stop(); 
-				//clip2.setFramePosition(0);
-				} 
-			catch (Exception e) {System.err.println("catch2");}
-			}
+		//}else
+			//{
 			
+			//}
+			
+	}
+	
+	public void jouerBar(){
+		try { 
+			System.err.println("bip2");
+			clip2.play();
+			//clip2.stop(); 
+			//clip2.setFramePosition(0);
+			} 
+		catch (Exception e) {System.err.println("catch2");}
 	}
 	
 }

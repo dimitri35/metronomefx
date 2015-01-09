@@ -1,18 +1,21 @@
 package fr.istic.java.dimitri.command;
 
-import fr.istic.java.dimitri.controller.Controller;
-import fr.istic.java.dimitri.model.MetronomeEngine;
+import fr.istic.java.dimitri.controller.IController;
 
 public class BpmChangedHandler implements ICommand{
 	
-	private Controller controller;
+	private IController controller;
 	
+	/* (non-javadoc)
+	 * 
+	 * @see fr.istic.java.dimitri.command.ICommand#execute()
+	 */
 	public void execute() {
 		if(controller != null)
 			controller.handleBpmChanged();
 	}
 	
-	public void setController(Controller controller) {
+	public void setController(IController controller) {
 		this.controller = controller;
 	}
 	

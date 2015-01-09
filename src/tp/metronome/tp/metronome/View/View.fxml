@@ -14,7 +14,7 @@
 	fx:controller="tp.metronome.View.Controller">
 	<children>
 		<Button layoutX="61.0" layoutY="293.0" mnemonicParsing="false"
-			onAction="#start" prefHeight="50.0" prefWidth="71.0" text="Start">
+			onAction="#start" prefHeight="50.0" prefWidth="71.0" text="Start" fx:id="start">
 			<font>
 				<Font name="gargi" size="15.0" />
 			</font>
@@ -22,19 +22,19 @@
 
 		<Button layoutX="180.0" layoutY="293.0" mnemonicParsing="false"
 			prefHeight="50.0" prefWidth="71.0" text="Stop"
-			onAction="#stop">
+			onAction="#stop" fx:id="stop">
 			<font>
 				<Font name="gargi" size="15.0" />
 			</font>
 		</Button>
 		<Button layoutX="324.0" layoutY="293.0" mnemonicParsing="false"
-			prefHeight="50.0" prefWidth="71.0" text="inc" onAction="#inc" textAlignment="CENTER">
+			prefHeight="50.0" prefWidth="71.0" text="inc" onAction="#inc" textAlignment="CENTER" fx:id="inc" >
 			<font>
 				<Font name="gargi" size="15.0" />
 			</font>
 		</Button>
 		<Button layoutX="478.0" layoutY="293.0" mnemonicParsing="false"
-			prefHeight="50.0" prefWidth="71.0" text="dec" onAction="#dec">
+			prefHeight="50.0" prefWidth="71.0" text="dec" onAction="#dec" fx:id="dec" >
 			<font>
 				<Font name="gargi" size="15.0" />
 			</font>

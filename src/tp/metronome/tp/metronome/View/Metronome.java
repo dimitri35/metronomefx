@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 public class Metronome extends Application {
 	
 	private Stage Stage;
+	
+	//public final static IHM ihm = new IHM() ;
 //  private Pane rootLayout;
 
 	@Override
@@ -20,7 +22,7 @@ public class Metronome extends Application {
 		Parent root = FXMLLoader.load(getClass().getResource("View.fxml"));
 		Scene scene = new Scene(root);
 	    
-        stage.setTitle("Metronome");
+        stage.setTitle("Métronome");
         stage.setScene(scene);
         stage.show();
         
@@ -50,7 +52,6 @@ public class Metronome extends Application {
         return primaryStage;
     }
 	*/
-	
 	public static void main(String[] args) {
 		launch(args);
 	}

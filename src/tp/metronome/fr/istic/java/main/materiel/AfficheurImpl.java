@@ -1,7 +1,7 @@
 package fr.istic.java.main.materiel;
 
+import tp.metronome.View.*;
 import javafx.fxml.FXML;
-
 
 /*
 import model.Controller;
@@ -45,31 +45,18 @@ public class AfficheurImpl implements Afficheur
 	}
 
 	public void allumerLED(int numLED) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void eteindreLED(int numLED) {
-		// TODO Auto-generated method stub
-		
+			IHM.ihm.getiDisplay().allumerLED(numLED);	
 	}
 
 	public void afficherTempo(int valeurTempo) {
-		System.out.println() ;
-		affichage = valeurTempo+"" ;
-		
+			IHM.ihm.getiDisplay().setText(valeurTempo+"");
 	}
 
 	@Override
 	public void éteindreLED(int numLED) {
-		// TODO Auto-generated method stub
-		
+			IHM.ihm.getiDisplay().éteindreLED(numLED);
 	}
-	
-	@Override
-	public String getTexte() {
-		return affichage ;	
-	}
+
 
 }
 

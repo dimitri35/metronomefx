@@ -19,7 +19,6 @@ public class MetronomeEngine implements IMetronomeEngine{
 	
 	public MetronomeEngine() {
 		bip = new Son("/ressources/beep-08b.wav", "/ressources/cell-phone-1-nr2.wav", 4);
-		
 	}
 	
 	public int getTempoBPM() {
@@ -44,8 +43,7 @@ public class MetronomeEngine implements IMetronomeEngine{
 			horloge = new HorlogeImp();
 			bipCommande = new BipEvenement(bip);
 			//horloge.activerPériodiquement(bipCommande, tempoBPM);
-		}
-		
+		}		
 	}
 	
 	public void Stop(){

@@ -1,20 +1,25 @@
 package fr.istic.java.dimitri.command;
 
-import fr.istic.java.dimitri.controller.Controller;
+import fr.istic.java.dimitri.controller.IController;
 
 public class CommandSlider implements ICommand{
 
-	private Controller controleur ;
+	private IController controleur ;
 
-	public CommandSlider(Controller controleur) {
+	public CommandSlider(IController controleur) {
 		this.controleur = controleur ;
 	}
+	
+	/* (non-javadoc)
+	 * 
+	 * @see fr.istic.java.dimitri.command.ICommand#execute()
+	 */
 	@Override
 	public void execute() {
 		controleur.handleSliderChanged();
 	}
 	
-	public void setControleur(Controller controleur) {
+	public void setControleur(IController controleur) {
 		this.controleur = controleur;
 	}
 	
