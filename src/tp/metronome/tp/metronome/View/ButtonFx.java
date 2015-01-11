@@ -1,7 +1,11 @@
 package tp.metronome.View;
 
-import fr.istic.java.dimitri.command.ICommand;
-
+import fr.istic.java.version.command.ICommand;
+/**
+ * Classe qui permet gérer un bouton Java FX 
+ * @author dimitri
+ *
+ */
 public class ButtonFx implements IButton {
 	
 	private ICommand commande ;

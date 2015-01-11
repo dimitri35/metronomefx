@@ -2,6 +2,7 @@ package tp.metronome.View;
 
 
 import java.net.URL;
+
 import java.util.ResourceBundle;
 
 import com.sun.media.jfxmedia.logging.Logger;
@@ -15,15 +16,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
-import fr.istic.java.dimitri.model.MetronomeEngine;
+import fr.istic.java.version.model.MetronomeEngine;
+
 /**
  * Classe qui permet d'initialiser l'IHM et de lancer les commandes.
- * 
+ * @author dounia
  *
  */
 public class Controller  implements Initializable{
 
-	fr.istic.java.dimitri.controller.Controller  controller  ;
+	fr.istic.java.version.controller.Controller  controller  ;
+	
+	public static VueMetronome vue ;
 	
 	@FXML private Text tempoBPM;
 	@FXML private Slider slider ;
@@ -56,10 +60,13 @@ public class Controller  implements Initializable{
     	//controller.inc() ; 
     }
 
+    /*
+     * (non-Javadoc)
+     * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+     */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		//Metronome.ihm = new IHM() ;
-		controller = new fr.istic.java.dimitri.controller.Controller(new MetronomeEngine()) ;
 		
 		DisplayFx disp = new DisplayFx() ;
 		IHM.ihm.setiDisplay(disp);
@@ -83,17 +90,20 @@ public class Controller  implements Initializable{
 			tableauButton[i].setOnMousePressed(new EventHandler<Event>() {
 				@Override
 				public void handle(Event arg0) {
-					IHM.ihm.setTouchePresse(j);
+					IHM.ihm.setTouchePresse(j+1);
 				}
 			});
 			
 			tableauButton[i].setOnMouseReleased(new EventHandler<Event>() {
 				@Override
 				public void handle(Event arg0) {
-					IHM.setToucheRelache(j);
+					IHM.ihm.setToucheRelache(j+1);
 				}
 			});
 		}
+		
+		
+		controller = new fr.istic.java.version.controller.Controller(new MetronomeEngine(),vue) ;
 		
 	}
 	

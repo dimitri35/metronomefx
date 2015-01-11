@@ -1,7 +1,12 @@
 package tp.metronome.View;
 
-import fr.istic.java.dimitri.command.ICommand;
+import fr.istic.java.version.command.ICommand;
 
+/**
+ * Interface qui permet de gérer les boutons start, stop, inc et dec
+ * @author dimitri
+ *
+ */
 public interface IButton {
 	/**
 	 * Permet d'ajouter une commande qui sera éxécuté lors d'un évènement clic.

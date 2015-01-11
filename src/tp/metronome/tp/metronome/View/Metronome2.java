@@ -2,20 +2,19 @@ package tp.metronome.View;
 
 import java.io.IOException;
 
-import fr.istic.java.version2.adapteur.AdapteurMateriel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import fr.istic.java.version2.adapteur.AdapteurMateriel;
+
 /**
- * Métronome V1
+ * Métronome V2
  * @author dounia
  *
  */
-public class Metronome extends Application {
+public class Metronome2 extends Application {
 	
 	private Stage Stage;
 	
@@ -33,7 +32,7 @@ public class Metronome extends Application {
 		Parent root = FXMLLoader.load(getClass().getResource("View.fxml"));
 		Scene scene = new Scene(root);
 	    
-        stage.setTitle("Métronome");
+        stage.setTitle("Métronome V2");
         stage.setScene(scene);
         stage.show();
         
@@ -65,7 +64,7 @@ public class Metronome extends Application {
 	*/
 	
 	public static void main(String[] args) {
-		Controller.vue = IHM.ihm ;
+		Controller.vue = new AdapteurMateriel() ;
 		launch(args);
 	}
 }

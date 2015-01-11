@@ -1,7 +1,11 @@
 package tp.metronome.View;
 
-import fr.istic.java.dimitri.command.ICommand;
-
+import fr.istic.java.version.command.ICommand;
+/**
+ * Classe qui permet de gérer les  molettes.
+ * @author dimitri
+ *
+ */
 public interface ISlider {
 
 	/**

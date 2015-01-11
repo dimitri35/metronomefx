@@ -2,7 +2,7 @@ package tp.metronome.View;
 
 import java.util.Observable;
 
-import fr.istic.java.dimitri.command.ICommand;
+import fr.istic.java.version.command.ICommand;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -11,8 +11,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-
-public  class IHM  {
+/**
+ * Classe qui permet de gérer l'IHM Java FX
+ * @author dimitri
+ */
+public  class IHM implements VueMetronome {
 
 	//public static Text display ;
 	//public static Slider slider ;	
@@ -23,7 +26,7 @@ public  class IHM  {
 	
 	public   IDisplay iDisplay  ;
 	
-	public   IButton boutons  ;
+	public   IButton boutons = new ButtonFx() ;
 	
 	public  static IHM ihm = new IHM() ;
 	
@@ -38,7 +41,9 @@ public  class IHM  {
 		commandeSlider = commande ;
 	}
 	*/
-	
+	/**
+	 * 
+	 */
 	public  void changementSlider() 
 	{
 		if(iSlider.getSliderCommand() != null)
@@ -82,22 +87,33 @@ public  class IHM  {
 			barCircle.setFill(Color.DODGERBLUE);
 	}
 	*/
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean[] getTouchePresse()
 	{
 		return touchePresseTab ;
 	}
-	
+	/**
+	 * 
+	 * @param num
+	 */
 	public void  setTouchePresse(int num) {
-		touchePresseTab[num] = true ;
+		touchePresseTab[num-1] = true ;
+	}
+	/**
+	 * 
+	 * @param num
+	 */
+	public  void setToucheRelache(int num) {
+		touchePresseTab[num-1] = false ;
 		getBouton().setNumPresse(num);
 	}
-	
-	public static void setToucheRelache(int num) {
-		touchePresseTab[num] = false ;
-	}
 
-	/**
-	 * @return le iSlider
+	/*
+	 * (non-Javadoc)
+	 * @see tp.metronome.View.VueMetronome#getiSlider()
 	 */
 	public  ISlider getiSlider() {
 		return iSlider;
@@ -117,15 +133,17 @@ public  class IHM  {
 		this.iDisplay = iDisplay;
 	}
 
-	/**
-	 * @return le iDisplay
+	/*
+	 * (non-Javadoc)
+	 * @see tp.metronome.View.VueMetronome#getiDisplay()
 	 */
 	public  IDisplay getiDisplay() {
 		return iDisplay;
 	}
 
-	/**
-	 * @return le bouton
+	/*
+	 * (non-Javadoc)
+	 * @see tp.metronome.View.VueMetronome#getBouton()
 	 */
 	public  IButton getBouton() {
 		return boutons;

@@ -1,6 +1,6 @@
 package tp.metronome.View;
 
-import fr.istic.java.dimitri.command.ICommand;
+import fr.istic.java.version.command.ICommand;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.paint.Color;
@@ -8,6 +8,11 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
+/**
+ * Classe qui permet de gérer l'affichage Java FX du métronome
+ * @author dimitri
+ *
+ */
 public class DisplayFx implements IDisplay{
 
 	

@@ -1,5 +1,8 @@
 package tp.metronome.View;
-
+/**
+ * Interface qui permet de gérer l'affichage du tempo et les LED
+ * @author dimitri
+ */
 public interface IDisplay {
 	/**
 	 * Permet d'allumer la LED de numéro numLED

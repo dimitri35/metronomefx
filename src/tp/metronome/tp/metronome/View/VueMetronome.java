@@ -1,9 +1,13 @@
 package tp.metronome.View;
 
-import fr.istic.java.dimitri.adapteur.BoutonAdapteur;
-import fr.istic.java.dimitri.adapteur.DisplayAdapter;
-import fr.istic.java.dimitri.adapteur.SliderAdapter;
+import fr.istic.java.version2.adapteur.BoutonAdapteur;
+import fr.istic.java.version2.adapteur.DisplayAdapter;
+import fr.istic.java.version2.adapteur.SliderAdapter;
 
+/**
+ * Classe qui permet de gérer les vues utilisés par le contrôleur.
+ *
+ */
 public interface VueMetronome {
 
 	/**

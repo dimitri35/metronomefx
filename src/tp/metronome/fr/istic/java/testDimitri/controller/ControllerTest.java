@@ -8,9 +8,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import fr.istic.java.dimitri.controller.Controller;
-import fr.istic.java.dimitri.model.MetronomeEngine;
-import fr.istic.java.main.materiel.Materiel;
+import fr.istic.java.version.controller.Controller;
+import fr.istic.java.version.materiel.Materiel;
+import fr.istic.java.version.model.MetronomeEngine;
 
 public class ControllerTest {
 
