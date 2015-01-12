@@ -30,10 +30,11 @@ public class Son {
 	 */
     public Son(String fichierAudio1, String fichierAudio2, int tempsParMesure) {
     	
-    	
+    	//Fichier audio battement
     	u1 = Son.class.getResource(fichierAudio1);
     	clip1 = Applet.newAudioClip(u1);
     	
+    	//Fichier audio nouvelle mesure
     	u2 = Son.class.getResource(fichierAudio2);
     	clip2 = Applet.newAudioClip(u2);
     	

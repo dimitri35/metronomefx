@@ -38,7 +38,7 @@ public class MetronomeEngine extends Observable implements IMetronomeEngine {
 	
 	public MetronomeEngine() {
 		super() ;
-		on = true ;
+		//on = true ;
 		commandes = new BeatFactoryCommand() ;
 		commandes.setEngine(this);
 		beatsPerBar = 0 ;
@@ -58,10 +58,15 @@ public class MetronomeEngine extends Observable implements IMetronomeEngine {
 	 */
 	public void setBPM(int bpm) {
 		this.bpm = bpm ;
-		System.out.println(60*1000/bpm) ;
 		//tmr.schedule(nouvelleTache(),0,60*1000/bpm);
+		/* On active les commandes périodiquement avec le nouveau nombre de battements 
+		 * par secondes
+		 */
 		Materiel.getHorloge().activerPériodiquement(commandes,60*1000/bpm);
 		setChanged();
+		/*
+		 * On notifie tous les observers qu'on a modifié le nombre de battements par secondes.
+		 */
 		notifyObservers(bpmChanged);
 	}
 
@@ -69,7 +74,6 @@ public class MetronomeEngine extends Observable implements IMetronomeEngine {
 	 * @see fr.istic.java.dimitri.model.IMetronomeEngine#getBeatsPerBar()
 	 */
 	public int getBeatsPerBar() {
-		// TODO Auto-generated method stub
 		return beatsPerBar ;
 	}
 	
@@ -84,7 +88,6 @@ public class MetronomeEngine extends Observable implements IMetronomeEngine {
 	 * @see fr.istic.java.dimitri.model.IMetronomeEngine#setRunning(boolean)
 	 */
 	public void setRunning(boolean running) {
-		// TODO Auto-generated method stub	
 		this.running = running ;
 	}
 
@@ -92,7 +95,6 @@ public class MetronomeEngine extends Observable implements IMetronomeEngine {
 	 * @see fr.istic.java.dimitri.model.IMetronomeEngine#isRunning()
 	 */
 	public boolean isRunning() {
-		// TODO Auto-generated method stub
 		return this.running ;
 	}
 
@@ -100,7 +102,6 @@ public class MetronomeEngine extends Observable implements IMetronomeEngine {
 	 * @see fr.istic.java.dimitri.model.IMetronomeEngine#setBeatEventHandler(fr.istic.java.dimitri.command.ICommand)
 	 */
 	public void setBeatEventHandler(ICommand commande) {
-		// TODO Auto-generated method stub
 		commandes.setBeatEvent(commande);
 	}
 
@@ -108,7 +109,6 @@ public class MetronomeEngine extends Observable implements IMetronomeEngine {
 	 * @see fr.istic.java.dimitri.model.IMetronomeEngine#setBarEventHandler(fr.istic.java.dimitri.command.ICommand)
 	 */
 	public void setBarEventHandler(ICommand commande) {
-		// TODO Auto-generated method stub
 		commandes.setBarEvent(commande);
 	}
 	
@@ -117,6 +117,7 @@ public class MetronomeEngine extends Observable implements IMetronomeEngine {
 	 */
 	public void start(int bpm,int beatsPerBar)
 	{
+		on = true ;
 		setBPM(bpm);
 		setBeatsPerBar(beatsPerBar) ;
 		Materiel.getHorloge().désactiver(commandes);
@@ -154,7 +155,6 @@ public class MetronomeEngine extends Observable implements IMetronomeEngine {
 			
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				execTache();
 			}
 		};
@@ -183,10 +183,11 @@ public class MetronomeEngine extends Observable implements IMetronomeEngine {
 	 * @see fr.istic.java.dimitri.model.IMetronomeEngine#stop()
 	 */
 	public void stop(){
-		
+		//Si le moteur est allumé
 		if (isOn()){
 			on = false ;
 			System.out.println("stop") ;
+			//désactivation de la commande
 			Materiel.getHorloge().désactiver(commandes);
 			//horloge.désactiver(bipCommandeDesactive);
 			//System.err.println("STOP");

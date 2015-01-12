@@ -23,9 +23,13 @@ public class FactoryBeatCommand {
 	 * @return La commande à éxécuter.
 	 */
 	public static ICommand getBeatCommand( IMetronomeEngine engine){
+		//On incrémente le nombre de battements déjà produit
 		nb++ ;
 		if(engine.getBeatsPerBar()!=0)
 		{
+			/*Si on veut produire un battement qui est divisible
+			  par le nombre de battements par mesure.
+			*/
 			if(nb%engine.getBeatsPerBar()==0)
 			{
 				return barEvent ;

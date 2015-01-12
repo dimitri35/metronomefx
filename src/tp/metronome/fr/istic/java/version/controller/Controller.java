@@ -29,11 +29,12 @@ import fr.istic.java.version2.adapteur.AdapteurMateriel;
 /**
  * Classe de contrôleur pour le métronome.
  */
-public class Controller  implements IController, Observer
+public class Controller  implements IController
 {
-
+	//Pour débugage seulement 
 	private int bpm ;
 	private int beatsPerBar ;	
+	
 	private IMetronomeEngine engine ;
 	public Afficheur iLED;
 	
@@ -44,14 +45,23 @@ public class Controller  implements IController, Observer
 		this.vue = vue ;
 		this.engine = engine ;
 				
+		/* On ajoute au moteur métronome la commande pour appeler le contrôleur lors d'un
+		 * battement.
+		 */
 		BeatCommand beatCommand = new BeatCommand() ;
 		beatCommand.setController(this);
 		engine.setBeatEventHandler(beatCommand);
 		
+		/* On ajoute au moteur métronome la commande pour appeler le contrôleur lors d'une
+		 * mesure.
+		 */
 		BarCommand barCommand = new BarCommand() ;
 		barCommand.setController(this);
 		engine.setBarEventHandler(barCommand);
 		
+		/* On ajoute au moteur métronome la commande pour appeler le contrôleur lors d'un
+		 * changement du nombre de battements par minute.
+		 */
 		BpmChangedHandler bpmHandler = new BpmChangedHandler() ;
 		engine.setBpmChangedCmd(new BpmChangedHandler());
 		Observable engineObservable = (Observable) engine ;
@@ -59,9 +69,14 @@ public class Controller  implements IController, Observer
 		//engineObservable.addObserver(o);
 		//IHM.getiSlider().setChangedSlider(new CommandSlider(this)) ;
 		
+		/* On ajoute la commande à la molette qui sera appelé lors du changement de 
+		 * la valeur de la molette.
+		 */
 		vue.getiSlider().setChangedSlider(new CommandSlider(this));
 		
-		
+		/* On ajoute la commande au boutons qui seront appelés lors d'un évènement de
+		 * type clic.
+		 */
 		ClickCommand  commandeClick = new ClickCommand() ;
 		commandeClick.setSource(vue.getBouton());
 		commandeClick.setController(this);
@@ -174,9 +189,11 @@ public class Controller  implements IController, Observer
 	 * (non-Javadoc)
 	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
 	 */
-	public void update(Observable arg0, Object arg1) {		
+	public void update(Observable arg0, Object arg1) {	
+		//Si l'observable est un moteur de métronome.
 		if(arg0 instanceof MetronomeEngine)
 		{	
+			//Si on la commande a éxécuter est un changement du nombre de battement.
 			if(arg1 instanceof BpmChangedHandler)
 			{		
 				((BpmChangedHandler) arg1).setController(this);

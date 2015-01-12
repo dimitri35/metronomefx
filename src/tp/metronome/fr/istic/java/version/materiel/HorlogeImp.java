@@ -30,10 +30,12 @@ public class HorlogeImp implements Horloge{
 	 * @see fr.istic.java.version.materiel.Horloge#activerPériodiquement(fr.istic.java.version.command.ICommand, long)
 	 */
 	public void activerPériodiquement(final ICommand cmd, long périodeEnSecondes){
+		//Si la commande à déjà été activé on la désactive.
 		if(tasks.containsKey(cmd))
 		{
 			désactiver(cmd);
 		}
+		//Création de la tâche.
 		task = new TimerTask()
 		{
 			@Override
@@ -44,7 +46,9 @@ public class HorlogeImp implements Horloge{
 				}) ;
 			}	
 		};
+		//On ajoute la tâche à la liste des tâches activé
 		tasks.put(cmd, task) ;
+		//On active cette tâche toute les périodesEnSecondes
 		timer.schedule(task, 0, périodeEnSecondes);
 		//timer.scheduleAtFixedRate(task, 0, périodeEnSecondes);
 	}
@@ -67,7 +71,9 @@ public class HorlogeImp implements Horloge{
 	 * @see fr.istic.java.version.materiel.Horloge#désactiver(fr.istic.java.version.command.ICommand)
 	 */
 	public void désactiver(ICommand cmd){
+		//On récupération de la tâche déjà crée
 		TimerTask task = tasks.get(cmd) ;
+		//On annule la tâche
 		task.cancel() ;
 		//timer.cancel() ;
 		//timer.purge() ;

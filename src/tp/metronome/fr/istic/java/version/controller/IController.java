@@ -13,31 +13,31 @@ import fr.istic.java.version.command.HandlerButton;
 public  interface IController extends Observer, HandlerBeat, HandlerButton
 {
 	
-	/**
+	/*
 	 * Permet d'arrêter le métronome engine
 	 */
 	//public void stop() ;
-	/**
+	/*
 	 * Permet diminuer le nombre de battements par mesure
 	 */
 	//public void dec() ;
-	/**
+	/*
 	 * Permet d'augmenter le nombre de  battements par mesure
 	 */
 	//public void inc() ;
-	/**
+	/*
 	 * Permet d'éxécuter un battement
 	 */
-	public void handleBeatEvent() ;
-	/**
+	//public void handleBeatEvent() ;
+	/*
 	 * Permet d'éxécuter une mesure
 	 */
-	public void handleBarEvent() ;
-	/**
+	//public void handleBarEvent() ;
+	/*
 	 * Permet de notifier la mise à jour du battement à la vue
 	 */
-	public void handleBpmChanged() ;
-	/**
+	//public void handleBpmChanged() ;
+	/*
 	 * Permet de notifier le métronome engine que le slider a été modifié
 	 */
 	public void handleSliderChanged() ;
