@@ -41,23 +41,18 @@ public class Controller  implements Initializable{
     
     @FXML protected void start(ActionEvent event) {
     	
-    	//controller = new fr.istic.java.dimitri.controller.Controller(new MetronomeEngine()) ;
-    	//controller.start(); 
-    	//IHM.setTouchePresse(0);
-    	//monMetronome.setTempoBPM(Integer.parseInt(tempoBPM.getText()));
-        //monMetronome.Start();
     }
     
     @FXML protected void stop(ActionEvent event) {
-        //controller.stop();
+    	
     }
     
     @FXML protected void dec(ActionEvent event) {
-    	//controller.dec() ;
+    	
     }
     
     @FXML protected void inc(ActionEvent event) {
-    	//controller.inc() ; 
+    	
     }
 
     /*
@@ -66,12 +61,11 @@ public class Controller  implements Initializable{
      */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		//Metronome.ihm = new IHM() ;
-		
+		//Ajout d'un objet d'affichage à l'IHM
 		DisplayFx disp = new DisplayFx() ;
 		IHM.ihm.setiDisplay(disp);
 		disp.setDisplay(tempoBPM) ;
-		
+		//Ajout de la molette Java FX à l'IHM
 		SliderFx slid = new SliderFx() ;
 		IHM.ihm.setiSlider(slid); 
 		slid.setSlider(slider) ;
@@ -80,12 +74,13 @@ public class Controller  implements Initializable{
 			IHM.ihm.changementSlider();
 		 } ) ;
 		
+		//Ajout des LED à l'affichage
 		disp.setBarCircle(barCircle) ;
 		disp.setBeatCircle(beatCircle) ;
+		//Ajout de la gestion des boutons à l'IHM
 		Button[] tableauButton = {start,stop,inc,dec} ;
 		for(int i=0;i<4;i++)
 		{
-
 			final int j = i ;
 			tableauButton[i].setOnMousePressed(new EventHandler<Event>() {
 				@Override
